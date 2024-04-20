@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../components/card/Card.component';
 import Search from '../components/search/Search.component';
-import './App.styles.scss'; // Assuming you have a CSS file for styling
+import './App.styles.scss';
 
 const App = () => {
   const [searchText, setSearchText] = useState('');
@@ -12,7 +12,7 @@ const App = () => {
     // Function to fetch quotes
     const fetchQuotes = async () => {
       const quotesArray = [];
-      for (let i = 0; i < 10; i++) { // Loop 10 times
+      for (let i = 0; i < 10; i++) {
         try {
           const response = await fetch("https://uselessfacts.jsph.pl/api/v2/facts/random");
           if (!response.ok) {
@@ -24,11 +24,11 @@ const App = () => {
           console.error('Error fetching quotes:', error);
         }
       }
-      setQuotes(quotesArray); // Set the quotes array
+      setQuotes(quotesArray);
     };
 
-    fetchQuotes(); // Call the fetchQuotes function
-  }, []); // Empty dependency array to run once on mount
+    fetchQuotes();
+  }, []);
 
   useEffect(() => {
     const filtered = quotes.filter(quote => quote.text.toLowerCase().includes(searchText.toLowerCase()));
@@ -42,6 +42,8 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
+
+        <h1>Random Useless FACTS</h1>      
 
         <Search className="search" handleSearch={handleSearch} />
 

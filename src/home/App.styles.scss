@@ -1,7 +1,37 @@
-.card-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 50px 100px;
-    justify-content: center;
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900
+
+// .noto-sans-<uniquifier> {
+    
+//     font-variation-settings:
+//       "wdth" 100;
+//   }
+
+.App {
+    margin: 0px;
+    padding: 0px;
+
+    h1 {
+        margin: auto;
+        text-align: center;
+        font-family: "Noto Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 800;
+        font-style: normal;
+        font-size: 5rem;
+        background: linear-gradient(to top, #553C8B, #FFEAFE);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 100px auto;
+    }
+
+    .card-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 50px 100px;
+        justify-content: center;
+    }
 }
+
+
