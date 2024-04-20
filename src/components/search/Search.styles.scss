@@ -1,0 +1,12 @@
+.search {
+    display: flex;
+    margin: 20px;
+    width: 100%;
+    justify-content: center;
+
+    .text {
+        width: 500px;
+        height: 30px;
+        border-radius: 10px;
+    }
+}
