@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../components/card/Card.component';
 import Search from '../components/search/Search.component';
-import './App.styles.css'; // Assuming you have a CSS file for styling
+import './App.styles.scss'; // Assuming you have a CSS file for styling
 
 const App = () => {
   const [searchText, setSearchText] = useState('');
@@ -9,15 +9,26 @@ const App = () => {
   const [filteredQuotes, setFilteredQuotes] = useState([]);
 
   useEffect(() => {
-    fetch("https://cat-fact.herokuapp.com/facts/random?animal_type=dog&amount=10")
-      .then(response => response.json())
-      .then(data => {
-        setQuotes(data);
-      })
-      .catch(error => {
-        console.error('Error fetching quotes:', error);
-      });
-  }, []);
+    // Function to fetch quotes
+    const fetchQuotes = async () => {
+      const quotesArray = [];
+      for (let i = 0; i < 10; i++) { // Loop 10 times
+        try {
+          const response = await fetch("https://uselessfacts.jsph.pl/api/v2/facts/random");
+          if (!response.ok) {
+            throw new Error('Failed to fetch data');
+          }
+          const data = await response.json();
+          quotesArray.push(data);
+        } catch (error) {
+          console.error('Error fetching quotes:', error);
+        }
+      }
+      setQuotes(quotesArray); // Set the quotes array
+    };
+
+    fetchQuotes(); // Call the fetchQuotes function
+  }, []); // Empty dependency array to run once on mount
 
   useEffect(() => {
     const filtered = quotes.filter(quote => quote.text.toLowerCase().includes(searchText.toLowerCase()));
